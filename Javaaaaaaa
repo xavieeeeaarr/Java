@@ -1,0 +1,62 @@
+package CCE105;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Earl {
+	
+	public static void main(String[]args) {
+		
+		Scanner waww = new Scanner(System.in);
+        ArrayList<String> file = new ArrayList<>();
+        boolean lop = true;
+        
+        
+        
+        
+        while (lop) {
+            System.out.println("Is it Urgent? [A] Yes [B] No: ");
+            String urgent = waww.nextLine().trim().toUpperCase();
+
+            switch (urgent) {
+                case "A":
+                    System.out.println("Enter File Name to be prioritized: ");
+                    String urgentFileName = waww.nextLine().trim();
+                    file.add(0, urgentFileName);
+                    break;
+
+                case "B":
+                    boolean fileNameLoop = true;
+                    while (fileNameLoop) {
+                        System.out.println("Enter File Name (or type 'done' to finish): ");
+                        String fileName = waww.nextLine().trim();
+                        if (fileName.equalsIgnoreCase("done")) {
+                            fileNameLoop = false; 
+                        } else {
+                            file.add(fileName); 
+                        }
+                    }
+                    break;
+
+                default:
+                    System.out.println("Invalid input. Please enter [A] for Yes or [B] for No.");
+                    break;
+            }
+
+            System.out.println("Do you want to continue? [Y] Yes [N] No");
+            String continueResponse = waww.nextLine().trim().toUpperCase();
+            if (continueResponse.equals("N")) {
+                lop = false; 
+            }
+        }
+        
+        if (!file.isEmpty()) {
+            System.out.println("===Order of File===");
+            for (String fileName : file) {
+                System.out.println("* "+fileName);
+            }
+        } else {
+            System.out.println("No jobs were added.");
+        }
+	}
+
+}
